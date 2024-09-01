@@ -37,7 +37,7 @@ public class Service implements LoginService, AdminService, PartnerService, Gues
     private GuestDao guestDao;
     private DetailInvoiceDao detailInvoiceDao;
     
-    public static UserDto user;
+    public static UserDto user; //A
     
     public Service() {
 		this.userDao = new UserDaoImplementation();
