@@ -56,60 +56,37 @@ public class GuestDaoImplementation implements GuestDao {
 		preparedStatement.execute();
 		preparedStatement.close();	
         }
-        
-       /*
+ /*
 	@Override
-	public PartnerDto findbyUserId(UserDto userDto) throws Exception {
-		String query = "SELECT ID,USERID, AMOUNT TYPE CREATION DATE WHERE DOCUMENT = ?";
+	public GuestDto findbyGuestId (GuestDto guestDto) throws Exception {
+		String query = "SELECT ID,USERID, PARTNERID, STATUS WHERE DOCUMENT = ?";
 		PreparedStatement preparedStatement = MYSQLConnection.getConnection().prepareStatement(query);
-		preparedStatement.setLong(1, userDto.getId());
+		preparedStatement.setLong(1, guestDto.getId());
 		ResultSet resulSet = preparedStatement.executeQuery();
 		if (resulSet.next()) {
-			Partner partner = new Partner();
-			partner.setId(resulSet.getLong("ID"));
-			partner.setUserId((User) resulSet.getObject("USER ID"));
-			partner.setAmount(resulSet.getDouble("AMOUNT"));
-                        partner.setType(resulSet.getString("TYPE"));
-			partner.setCreation_date(resulSet.getDate("CREATION DATE"));
+			Guest guest = new Guest();
+			guest.setId(resulSet.getLong("ID"));
+			guest.setUserId((User) resulSet.getObject("USERID"));
+			guest.setPartnerId((Partner) resulSet.getObject("PARTNERID"));
+                        guest.setStatus(guest.isStatus("STATUS"));
 			resulSet.close();
 			preparedStatement.close();
-			return Helper.parse(partner);
+			return Helper.parse(guest);
 		}
 		resulSet.close();
-                    preparedStatement.close();
+                preparedStatement.close();
 		return null;
 	}
-
+*/
         @Override
-	public void updatePartner(PartnerDto partnerDto) throws Exception {
-                Partner partner = Helper.parse(partnerDto);
-                String query = "UPDATE TABLE PARTNER AMOUNT,TYPE WHERE ID =(?) ";
+	public void updateGuest(GuestDto guestDto) throws Exception {
+                Guest guest = Helper.parse(guestDto);
+                String query = "UPDATE GUEST STATUS WHERE ID =(?) ";
                 PreparedStatement preparedStatement = MYSQLConnection.getConnection().prepareStatement(query);
-                preparedStatement.setDouble(1, partner.getAmount());
-                preparedStatement.setString(2, partner.getType());
-                preparedStatement.setLong(3, partner.getId());
+                preparedStatement.setBoolean(1, guest.isStatus());
+                preparedStatement.setLong(2, guest.getId());
                 preparedStatement.execute();
 		preparedStatement.close();
                 
         }
-
-    public GuestDto findbyUserId(PersonDto personDto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    
-
-    public void updateGuest(GuestDto guestDto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-   */
-
-    public GuestDto findbyUserId(PersonDto personDto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void updateGuest(GuestDto guestDto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

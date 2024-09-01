@@ -11,8 +11,8 @@ import app.dto.PartnerDto;
  * @author Sebastian
  */
 public interface PartnerService {
-    public void createPartner() throws Exception;
-    public void updateAmount() throws Exception;
+    public void createPartner(PartnerDto parnetDto) throws Exception;
+    public void updateAmount(PartnerDto parnetDto) throws Exception;
     public void upgradeType(PartnerDto parnetDto) throws Exception;
-    public void unsubscribeParner() throws Exception;
+    
 }

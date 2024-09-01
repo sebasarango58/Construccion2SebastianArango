@@ -62,14 +62,14 @@ public class PartnerDaoImplementation implements PartnerDao {
        
 	@Override
 	public PartnerDto findbyUserId(UserDto userDto) throws Exception {
-		String query = "SELECT ID,USERID, AMOUNT TYPE CREATION DATE WHERE DOCUMENT = ?";
+		String query = "SELECT ID,USERID, AMOUNT, TYPE, CREATION DATE WHERE DOCUMENT = ?";
 		PreparedStatement preparedStatement = MYSQLConnection.getConnection().prepareStatement(query);
 		preparedStatement.setLong(1, userDto.getId());
 		ResultSet resulSet = preparedStatement.executeQuery();
 		if (resulSet.next()) {
 			Partner partner = new Partner();
 			partner.setId(resulSet.getLong("ID"));
-			partner.setUserId((User) resulSet.getObject("USER ID"));
+			partner.setUserId((User) resulSet.getObject("USERID"));
 			partner.setAmount(resulSet.getDouble("AMOUNT"));
                         partner.setType(resulSet.getString("TYPE"));
 			partner.setCreation_date(resulSet.getDate("CREATION DATE"));

@@ -4,6 +4,7 @@
  */
 package app.service;
 
+import app.dao.GuestDaoImplementation;
 import app.dao.PartnerDaoImplementation;
 import app.dao.PersonDaoImplementation;
 import app.dao.UserDaoImplementation;
@@ -13,6 +14,7 @@ import app.dao.interfaces.InvoiceDao;
 import app.dao.interfaces.PartnerDao;
 import app.dao.interfaces.PersonDao;
 import app.dao.interfaces.UserDao;
+import app.dto.GuestDto;
 import app.dto.PartnerDto;
 import app.dto.PersonDto;
 import app.dto.UserDto;
@@ -40,7 +42,9 @@ public class Service implements LoginService, AdminService, PartnerService, Gues
     public Service() {
 		this.userDao = new UserDaoImplementation();
 		this.personDao = new PersonDaoImplementation();
-                this.personDao = (PersonDao) new PartnerDaoImplementation();
+                this.partnerDao = new PartnerDaoImplementation();
+                this.guestDao = new GuestDaoImplementation();
+                
     }
     @Override
     public void login(UserDto userDto) throws Exception {
@@ -57,22 +61,46 @@ public class Service implements LoginService, AdminService, PartnerService, Gues
     }
     @Override
     public void logout(){
+        user = null;
+        System.out.println("Se ha cerrado Sesion");
+    }
+   /*     
+    @Override
+    public void createPartner(PartnerDto partnerDto) throws Exception {
+		PartnerDto ExixtingpartnerDto = partnerDao.findbyUserId(partnerDto.getUserId());
+		if (ExixtingpartnerDto == null) {
+			throw new Exception("no existe un Socio registrado con esa cedula");
+		}
+		
+		partnerDao.createPartner(partnerDto);
+
+    }
+    */
+    
+    @Override
+	public void createPerson(PersonDto personDto) throws Exception {
+		this.createPerson(personDto);
+	}
+
+	@Override
+	public void createUser(UserDto userDto) throws Exception {
+		this.createUser(userDto);
         
-    }
+        }
 
-    public void createParner(UserDto userDto) throws Exception {
+    public void createParner(PartnerDto partnerDto) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void createGuest(UserDto userDto) throws Exception {
+    public void createGuest(GuestDto guestDto) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void createPartner() throws Exception {
+    public void createPartner(PartnerDto parnetDto) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void updateAmount() throws Exception {
+    public void updateAmount(PartnerDto parnetDto) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -80,7 +108,7 @@ public class Service implements LoginService, AdminService, PartnerService, Gues
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void unsubscribeParner() throws Exception {
+    public void createGuest(UserDto userDto) throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -88,14 +116,9 @@ public class Service implements LoginService, AdminService, PartnerService, Gues
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void createPerson(PersonDto personDto) throws Exception {
+    public void deleteGuest() throws Exception {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    public void createUser(UserDto userDto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
+    } 
     }
         
     

@@ -13,6 +13,7 @@ import app.dto.UserDto;
 public interface GuestService {
     public void createGuest(UserDto userDto) throws Exception;
     public void updateGuest() throws Exception;
+    public void deleteGuest() throws Exception;
     
     
 }
