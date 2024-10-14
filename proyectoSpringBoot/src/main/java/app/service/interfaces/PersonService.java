@@ -4,16 +4,17 @@
  */
 package app.service.interfaces;
 
-import app.dto.GuestDto;
-import app.dto.PartnerDto;
+import app.dto.PersonDto;
+
+
 
 /**
  *
  * @author Sebastian
  */
-public interface AdminService {
-    public void createPartner(PartnerDto partnerDto) throws Exception;
-    public void createGuest(GuestDto guestDto) throws Exception;
-    
-    
+public interface PersonService {
+     public void createPerson(PersonDto personDto) throws Exception;
+     
+   
+
 }

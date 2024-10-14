@@ -4,10 +4,7 @@
  */
 package app.service;
 
-import app.dao.GuestDaoImplementation;
-import app.dao.PartnerDaoImplementation;
-import app.dao.PersonDaoImplementation;
-import app.dao.UserDaoImplementation;
+
 import app.dao.interfaces.DetailInvoiceDao;
 import app.dao.interfaces.GuestDao;
 import app.dao.interfaces.InvoiceDao;
@@ -24,33 +21,42 @@ import app.service.interfaces.LoginService;
 import app.service.interfaces.PartnerService;
 import app.service.interfaces.PersonService;
 import app.service.interfaces.UserService;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Sebastian
  */
-public class Service implements LoginService, AdminService, PartnerService, GuestService, PersonService, UserService {
-
+@Getter
+@Setter
+@Service
+@NoArgsConstructor
+public class ClubService implements LoginService, AdminService, PartnerService, GuestService, PersonService, UserService {
+    @Autowired
     private UserDao userDao;
+    @Autowired
     private PersonDao personDao;
+    @Autowired
     private PartnerDao partnerDao;
+    @Autowired
     private InvoiceDao invoiceDao;
+    @Autowired
     private GuestDao guestDao;
+    @Autowired
     private DetailInvoiceDao detailInvoiceDao;
+    @Autowired
 
     public static UserDto user; //A
 
-    public Service() {
-        this.userDao = new UserDaoImplementation();
-        this.personDao = new PersonDaoImplementation();
-        this.partnerDao = new PartnerDaoImplementation();
-        this.guestDao = new GuestDaoImplementation();
 
-    }
 
     @Override
     public void login(UserDto userDto) throws Exception {
-        UserDto validateDto = userDao.findbyUserName(userDto);
+        UserDto validateDto = userDao.findByUserName(userDto);
         if (validateDto == null) {
             throw new Exception("no existe usuario registrado");
         }
@@ -93,7 +99,7 @@ public class Service implements LoginService, AdminService, PartnerService, Gues
     }
 
     public void updateAmount(PartnerDto parnerDto) throws Exception {
-        PartnerDto partnerDto = partnerDao.findbyUserId(user);
+        PartnerDto partnerDto = partnerDao.findByUserId(user);
         partnerDto.setAmount(parnerDto.getAmount() + partnerDto.getAmount());
         if (partnerDto.getType().equals("VIP") && partnerDto.getAmount() > 5000000) {
             throw new Exception("se han superado topes");

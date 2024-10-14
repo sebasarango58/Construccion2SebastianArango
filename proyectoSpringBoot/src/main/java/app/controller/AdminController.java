@@ -12,23 +12,31 @@ import app.dto.PersonDto;
 import app.dto.UserDto;
 import app.service.interfaces.AdminService;
 import java.util.Date;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
 
 
 /**
  *
  * @author Sebastian
  */
+@Controller
+@Setter
+@Getter
+@NoArgsConstructor
 public class AdminController implements ControllerInterface{
+    @Autowired
         private PersonValidator personValidator;
+    @Autowired
         private UserValidator userValidator;
+    @Autowired
         private AdminService service;
-        private static final String MENU = "Ingrese la opción que desea \n 1. Para crear Socio \n 2. para crear el invitado \n 3. Para cerrar sesion";
+        private static final String MENU = "Ingrese la opciÃ³n que desea \n 1. Para crear Socio \n 2. para crear el invitado \n 3. Para cerrar sesion";
         
-    public AdminController(){
-        this.personValidator = new PersonValidator ();
-        this.userValidator = new UserValidator();
-        
-}
 
         @Override 
         public void session() throws Exception{
@@ -67,7 +75,7 @@ public class AdminController implements ControllerInterface{
                 return false;
             }
             default :  {
-                System.out.println("Ingrese una opción valida");
+                System.out.println("Ingrese una opciï¿½n valida");
                 return true;
             }
             }
@@ -78,14 +86,14 @@ public class AdminController implements ControllerInterface{
                System.out.println("Ingrese nombre del socio");
                String name = Utils.getReader().nextLine();
                personValidator.validName(name);
-               System.out.println("Ingrese la Cédula del socio");
+               System.out.println("Ingrese la Cï¿½dula del socio");
                long document = personValidator.validDocument(Utils.getReader().nextLine());
-               System.out.println("Ingrese el número celular del socio");
+               System.out.println("Ingrese el nï¿½mero celular del socio");
                long cellphone = personValidator.validCellphone(Utils.getReader().nextLine());
                System.out.println("ingrese el nombre de usuario del socio");
                String userName = Utils.getReader().nextLine();
                userValidator.validUserName(userName);
-               System.out.println("ingrese la contraseña del socio");
+               System.out.println("ingrese la contraseï¿½a del socio");
                String password = Utils.getReader().nextLine();
                userValidator.validPassword(password);
                PersonDto personDto = new PersonDto();
@@ -114,12 +122,12 @@ public class AdminController implements ControllerInterface{
                 personValidator.validName(name);
                 System.out.println("ingrese la cedula del invitado");
                 long document = personValidator.validDocument(Utils.getReader().nextLine());
-                System.out.println("ingrese el número celular del invitado");
+                System.out.println("ingrese el nï¿½mero celular del invitado");
                 long cellphone = personValidator.validCellphone(Utils.getReader().nextLine());
                 System.out.println("ingrese el nombre de usuario del invitado");
                 String userName = Utils.getReader().nextLine();
                 userValidator.validUserName(userName);
-                System.out.println("ingrese la contraseña del invitado");
+                System.out.println("ingrese la contraseï¿½a del invitado");
                 String password = Utils.getReader().nextLine();
                 userValidator.validPassword(password);
                 PersonDto personDto = new PersonDto();
@@ -137,5 +145,6 @@ public class AdminController implements ControllerInterface{
                 System.out.println("Se ha creado el usuario correctamente");
         }
 
-
+ //create Invoice
+   //un metodo que permita visualizar facturas
 }

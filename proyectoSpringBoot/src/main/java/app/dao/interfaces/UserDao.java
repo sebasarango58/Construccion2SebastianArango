@@ -14,9 +14,9 @@ import app.dto.UserDto;
  * @author Sebastian
  */
 public interface UserDao {
-    public UserDto findbyUserName (UserDto userDto) throws Exception;
-    public boolean existsbyUserName(UserDto userDto) throws Exception;
-    public UserDto findbyUserId (UserDto userDto) throws Exception;
+    public UserDto findByUserName (UserDto userDto) throws Exception;
+    public boolean existsByUserName(UserDto userDto) throws Exception;
+    public UserDto findByUserId (UserDto userDto) throws Exception;
     public void createUser (UserDto userDto) throws Exception;
     //public void updateUser (UserDto userDto) throws Exception;
     public void deleteUser (UserDto UserDto) throws Exception;

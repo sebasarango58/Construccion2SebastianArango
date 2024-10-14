@@ -85,13 +85,7 @@ public class PartnerDaoImplementation implements PartnerDao {
         @Override
 	public void updatePartner(PartnerDto partnerDto) throws Exception {
                 Partner partner = Helper.parse(partnerDto);
-                String query = "UPDATE TABLE PARTNER AMOUNT,TYPE WHERE ID =(?) ";
-                PreparedStatement preparedStatement = MYSQLConnection.getConnection().prepareStatement(query);
-                preparedStatement.setDouble(1, partner.getAmount());
-                preparedStatement.setString(2, partner.getType());
-                preparedStatement.setLong(3, partner.getId());
-                preparedStatement.execute();
-		preparedStatement.close();
+               // partnerRepository.save(partner);
                 
         }
     

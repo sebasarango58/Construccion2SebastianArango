@@ -6,6 +6,7 @@ package app.dao;
 
 import app.config.MYSQLConnection;
 import app.dao.interfaces.UserDao;
+import app.dto.PartnerDto;
 import app.dto.UserDto;
 import app.helpers.Helper;
 import app.model.Person;
@@ -38,7 +39,7 @@ public class UserDaoImplementation implements UserDao {
 			resulSet.close();
 			preparedStatement.close();
 			return Helper.parse(user);
-		}
+		} //craer el mimso
 		resulSet.close();
 		preparedStatement.close();
 		return null;
@@ -95,7 +96,11 @@ public class UserDaoImplementation implements UserDao {
 		preparedStatement.execute();
 		preparedStatement.close();	
         
-       }
+        
+
+	}
+
+       
 
  
 }
