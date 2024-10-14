@@ -6,6 +6,7 @@ package app.controller;
 
 import app.controller.validator.UserValidator;
 import app.dto.UserDto;
+import app.service.interfaces.LoginService;
 import java.util.HashMap;
 import java.util.Map;
 import lombok.Getter;
@@ -21,11 +22,11 @@ import org.springframework.stereotype.Controller;
 @Controller
 @Setter
 @Getter
-@NoArgsConstructor
 public class LoginController implements ControllerInterface{
     @Autowired
     private UserValidator userValidator;
     @Autowired
+    private LoginService service;
     private static final String MENU= "ingrese la opcion que desea: \n 1. para iniciar sesion. \n 2. para detener la ejecucion.";
     private Map<String,ControllerInterface> roles;
     

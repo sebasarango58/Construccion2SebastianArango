@@ -35,7 +35,10 @@ public class AdminController implements ControllerInterface{
         private UserValidator userValidator;
     @Autowired
         private AdminService service;
-        private static final String MENU = "Ingrese la opción que desea \n 1. Para crear Socio \n 2. para crear el invitado \n 3. Para cerrar sesion";
+        private static final String MENU = "Ingrese la opción que desea \n "
+                + "1. Para crear Socio \n "
+                + "2. para crear el invitado \n "
+                + "3. Para cerrar sesion";
         
 
         @Override 

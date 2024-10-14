@@ -4,7 +4,7 @@
  */
 package app.dao;
 
-import app.config.MYSQLConnection;
+
 import app.dao.interfaces.PersonDao;
 import app.dao.repository.PersonRepository;
 import app.dto.PersonDto;
@@ -48,7 +48,7 @@ public class PersonDaoImplementation implements PersonDao {
 	public void deletePerson(PersonDto personDto) throws Exception {
 		Person person = Helper.parse(personDto);
 		personRepository.delete(person);
-                
+                personDto.setId(person.getId());
          
         }
 

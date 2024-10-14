@@ -4,7 +4,7 @@
  */
 package app.dao;
 
-import app.config.MYSQLConnection;
+
 import app.dao.interfaces.PartnerDao;
 import app.dao.interfaces.PersonDao;
 import app.dao.repository.PartnerRepository;

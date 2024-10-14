@@ -36,7 +36,10 @@ public class PartnerController implements ControllerInterface{
         private DetailInvoiceValidator detailInvoiceValidator;
         
         private static final String MENU = 
-                "Ingrese la opcion la accion que desea hacer \n 1. Crear socio. \n 2. Cancelar Suscripci�n \n 3. para cerrar sesion";
+                "Ingrese la opcion la accion que desea hacer \n "
+                + "1. Crear socio. \n "
+                + "2. Cancelar Suscripci�n \n "
+                + "3. para cerrar sesion";
 
 
     @Override

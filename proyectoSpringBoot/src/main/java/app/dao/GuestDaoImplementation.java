@@ -4,21 +4,14 @@
  */
 package app.dao;
 
-import app.config.MYSQLConnection;
+
 import app.dao.interfaces.GuestDao;
 import app.dao.repository.GuestRepository;
 import app.dto.GuestDto;
-import app.dto.PartnerDto;
-import app.dto.PersonDto;
 import app.dto.UserDto;
 import app.helpers.Helper;
 import app.model.Guest;
-import app.model.Partner;
 import app.model.User;
-import jakarta.persistence.Entity;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
