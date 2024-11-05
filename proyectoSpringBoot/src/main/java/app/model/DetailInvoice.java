@@ -30,7 +30,7 @@ public class DetailInvoice {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
     private long id;
-    @JoinColumn(name="invoiceId")
+    @JoinColumn(name="invoiceid")
     @OneToOne
     private Invoice invoiceId;
     @Column(name="item")

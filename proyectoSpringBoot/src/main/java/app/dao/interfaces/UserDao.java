@@ -5,8 +5,7 @@
 package app.dao.interfaces;
 
 
-import app.dto.PartnerDto;
-import app.dto.PersonDto;
+
 import app.dto.UserDto;
 
 /**

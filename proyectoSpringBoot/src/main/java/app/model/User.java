@@ -22,7 +22,7 @@ public class User {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
     private long id;
-    @JoinColumn(name="PersonId")
+    @JoinColumn(name="personnid")
     @OneToOne
     private Person personId; 
     @Column(name="username")
@@ -30,7 +30,7 @@ public class User {
     @Column(name="password")
     private String password;
     @Column(name="role")
-    private String Role;
+    private String role;
 
     
     

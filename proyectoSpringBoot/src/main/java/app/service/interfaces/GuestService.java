@@ -11,7 +11,6 @@ import app.dto.UserDto;
  * @author Sebastian
  */
 public interface GuestService {
-    public void createGuest(UserDto userDto) throws Exception;
     public void updateGuest() throws Exception;
     public void deleteGuest() throws Exception;
     

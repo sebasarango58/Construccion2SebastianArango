@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public abstract class CommonsValidator {
     public void isValidString(String element, String value) throws Exception {
-		if (value.equals("")) {
+		if (value == null || value.equals("")) {
 			throw new Exception(element + " no puede ser un valor vacio");
 		}
 	}

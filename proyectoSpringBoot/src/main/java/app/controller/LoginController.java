@@ -1,4 +1,4 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -63,7 +63,7 @@ public class LoginController implements ControllerInterface{
 			return true;
 		}
 		case "2": {
-			System.out.println("se detiene el programa");;
+			System.out.println("se detiene el programa");
 			return false;
 		}
 		default: {
@@ -83,6 +83,7 @@ public class LoginController implements ControllerInterface{
 	UserDto userDto = new UserDto();
         userDto.setPassword(password);
         userDto.setUsername(userName);
+        this.service.login(userDto);
         
         if (roles.get(userDto.getRole())==null) {
             throw new Exception ("Rol invalido");   

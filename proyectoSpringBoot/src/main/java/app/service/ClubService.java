@@ -64,9 +64,11 @@ public class ClubService implements LoginService, AdminService, PartnerService, 
         if (validateDto == null) {
             throw new Exception("no existe usuario registrado");
         }
+        
         if (!userDto.getPassword().equals(validateDto.getPassword())) {
             throw new Exception("usuario o contraseña incorrecto");
         }
+        System.out.println(validateDto.getRole());
         userDto.setRole(validateDto.getRole());
         user = validateDto;
 
@@ -106,15 +108,10 @@ public class ClubService implements LoginService, AdminService, PartnerService, 
     }
  
     public void createGuest(GuestDto guestDto) throws Exception {
-       /* PersonDto personDto = personDao.findByDocument(guestDto.getPartnerId());
-        if (personDto == null) {
-            throw new Exception("No existe un huesped registrado con esa cédula");
-        }
-        guestDto.setPartnerId(partnerId);
-        guestDao.createGuest(guestDto);
-        */
-  
-      
+        this.createUser(guestDto.getUserId());
+        this.guestDao.createGuest(guestDto);
+        
+     
     }
  
     public void updateAmount(PartnerDto parnerDto) throws Exception {
@@ -133,27 +130,23 @@ public class ClubService implements LoginService, AdminService, PartnerService, 
     }
 
     public void upgradeType(PartnerDto parnetDto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
 
 
     public void updateGuest() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
 
     public void deleteGuest() throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
 
 
     @Override
     public void createInvoice(InvoiceDto invoiceDto, DetailInvoiceDto detailInvoiceDto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
 
-    @Override
-    public void createGuest(UserDto userDto) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
 }

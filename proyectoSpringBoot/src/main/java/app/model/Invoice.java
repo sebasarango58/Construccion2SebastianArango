@@ -34,7 +34,7 @@ public class Invoice {
     @OneToOne
     private Person personId;
     @OneToOne
-    @JoinColumn(name="partnetId")
+    @JoinColumn(name="partnerid")
     private Partner partnerId;
     @Column(name="creationdate")
     private Date creation_date;

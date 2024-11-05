@@ -30,7 +30,7 @@ public class Partner {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
     private long id;
-    @JoinColumn(name="userId")
+    @JoinColumn(name="userid")
     @OneToOne
     private User userId;
     @Column(name="amount")

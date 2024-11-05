@@ -30,7 +30,7 @@ public class Guest {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
     private long id;
-    @JoinColumn(name="userId")
+    @JoinColumn(name="userid")
     @OneToOne
     private User userId;
     @JoinColumn(name="partnerId")

@@ -4,6 +4,8 @@
  */
 package app.controller;
 
+import app.controller.request.CreateGuestRequest;
+import app.controller.request.CreatePartnerRequest;
 import app.controller.validator.PersonValidator;
 import app.controller.validator.UserValidator;
 import app.dto.GuestDto;
@@ -16,7 +18,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 
 
@@ -24,11 +31,12 @@ import org.springframework.stereotype.Controller;
  *
  * @author Sebastian
  */
-@Controller
+@RestController
 @Setter
 @Getter
 @NoArgsConstructor
 public class AdminController implements ControllerInterface{
+    
     @Autowired
         private PersonValidator personValidator;
     @Autowired
@@ -43,61 +51,31 @@ public class AdminController implements ControllerInterface{
 
         @Override 
         public void session() throws Exception{
-            boolean session =true;
-            while (session){
-                session = menu();
-            }
+        
         }
-        private boolean menu(){
-            try{  
-            System.out.println(MENU);
-            String option = Utils.getReader().nextLine();
-            return options(option);
-            
-            }catch(
-
-		Exception e) {
-			System.out.println(e.getMessage());
-			return true;
-            }            
+        
+        @GetMapping("/partner")
+        public String funcion(){
+            return "Funciona";
         }
-            
-            
-        private boolean options(String option)throws Exception{    
-            switch (option){
-            case "1" :{
-                this.createPartner();
-                return true;
-            }
-            case "2" :{
-                this.createGuest();
-                return true;
-            }
-            case "3" :{
-                System.out.println("Se ha cerrado Sesion");
-                return false;
-            }
-            default :  {
-                System.out.println("Ingrese una opci�n valida");
-                return true;
-            }
-            }
-
-}         
-
-        private void createPartner() throws Exception{
-               System.out.println("Ingrese nombre del socio");
-               String name = Utils.getReader().nextLine();
+        
+        @GetMapping("/guest")
+        public String funciona(){
+            return "Guest Funciona";
+        }
+        
+        
+        @PostMapping("/partner")
+        private ResponseEntity createPartner(@RequestBody CreatePartnerRequest request) throws Exception{
+            try{
+               
+               String name = request.getName();
                personValidator.validName(name);
-               System.out.println("Ingrese la C�dula del socio");
-               long document = personValidator.validDocument(Utils.getReader().nextLine());
-               System.out.println("Ingrese el n�mero celular del socio");
-               long cellphone = personValidator.validCellphone(Utils.getReader().nextLine());
-               System.out.println("ingrese el nombre de usuario del socio");
-               String userName = Utils.getReader().nextLine();
+               long document = personValidator.validDocument(request.getDocument());
+               long cellphone = personValidator.validCellphone(request.getCellphone());
+               String userName = request.getUserName();
                userValidator.validUserName(userName);
-               System.out.println("ingrese la contrase�a del socio");
-               String password = Utils.getReader().nextLine();
+               String password = request.getPassword();
                userValidator.validPassword(password);
                PersonDto personDto = new PersonDto();
                personDto.setName(name);
@@ -115,23 +93,24 @@ public class AdminController implements ControllerInterface{
                partnerDto.setCreation_date(new Date(System.currentTimeMillis()));  
                this.service.createPartner(partnerDto);
                System.out.println("Se ha creado el usuario correctamente");
-    
+               return new ResponseEntity<>("Se ha creado el usuario correctamente",HttpStatus.OK);
+            }catch(Exception e){
+                return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+            }
+                
     
         }
-
-        private void createGuest() throws Exception{
-                System.out.println("ingrese el nombre del invitado");
-                String name = Utils.getReader().nextLine();
+        @PostMapping("/guest")
+        private ResponseEntity createGuest(@RequestBody CreateGuestRequest request) throws Exception{
+            try{
+                
+                String name = request.getName();
                 personValidator.validName(name);
-                System.out.println("ingrese la cedula del invitado");
-                long document = personValidator.validDocument(Utils.getReader().nextLine());
-                System.out.println("ingrese el n�mero celular del invitado");
-                long cellphone = personValidator.validCellphone(Utils.getReader().nextLine());
-                System.out.println("ingrese el nombre de usuario del invitado");
-                String userName = Utils.getReader().nextLine();
+                long document = personValidator.validDocument(request.getDocument());
+                long cellphone = personValidator.validCellphone(request.getCellphone());  
+                String userName = request.getUserName();
                 userValidator.validUserName(userName);
-                System.out.println("ingrese la contrase�a del invitado");
-                String password = Utils.getReader().nextLine();
+                String password = request.getPassword();
                 userValidator.validPassword(password);
                 PersonDto personDto = new PersonDto();
                 personDto.setName(name);
@@ -146,7 +125,11 @@ public class AdminController implements ControllerInterface{
                 guestDto.setUserId(userDto);
                 this.service.createGuest(guestDto);
                 System.out.println("Se ha creado el usuario correctamente");
+                return new ResponseEntity<>("Se ha creado el usuario correctamente",HttpStatus.OK);
+            }catch(Exception e){
+                return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
         }
+}
 
  //create Invoice
    //un metodo que permita visualizar facturas
